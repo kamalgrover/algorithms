@@ -7,3 +7,4 @@ Test/*
 *_BASE_*.cpp
 *_LOCAL_*.cpp
 *_REMOTE_*.cpp
+.vscode/*
