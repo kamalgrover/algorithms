@@ -29,7 +29,7 @@ void printAA(vector<vector<K>> &a)
 //we need to define notation in path array.
 // path[i][j = 'L' means coming from left
 // path[i][j = 'U' means coming from left
-// path[i][j = 'D' means coming from left
+// path[i][j = '*' means coming from left
 
 int solve(string &x, string &y, vector<vector<int>> &dp, vector<vector<char>> &path)
 {
@@ -45,7 +45,7 @@ int solve(string &x, string &y, vector<vector<int>> &dp, vector<vector<char>> &p
             if (x[i - 1] == y[j - 1]) // caution : dp and paths is indexed with 1
             {
                 dp[i][j] = 1 + dp[i - 1][j - 1];
-                path[i][j] = 'D';
+                path[i][j] = '*';
             }
             else
             {
@@ -119,7 +119,7 @@ string getSolutionPath(string &x, string &y, vector<vector<char>> &path)
         switch (path[i][j])
         {
 
-        case 'D':
+        case '*':
             s = x[i - 1] + s;
             i--;
             j--;
@@ -139,7 +139,7 @@ string getSolutionPath(string &x, string &y, vector<vector<char>> &path)
 }
 int main(int argc, char const *argv[])
 {
-    /*
+    /* INPUT
     10 14
     A B C D F G H J Q Z
     A B C D E F G I J K R X Y Z
@@ -163,7 +163,40 @@ int main(int argc, char const *argv[])
     vector<vector<int>> DP(lenX + 1, vector<int>(lenY + 1, 0));
     vector<vector<char>> path(lenX + 1, vector<char>(lenY + 1, '0'));
     solve(X, Y, DP, path);
+    printAA(DP);
+    printAA(path);
     string s = getSolutionPath(X, Y, path);
     cout << diff(X, Y, s) << endl;
+
+    /**
+     * DP ARRAY : I = 0 AND J = 0 NOT SHOWN FOR CLARITY
+                    A B C D E F G I J K R X Y Z
+                A   1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+                B   1 2 2 2 2 2 2 2 2 2 2 2 2 2 
+                C   1 2 3 3 3 3 3 3 3 3 3 3 3 3 
+                D   1 2 3 4 4 4 4 4 4 4 4 4 4 4 
+                F   1 2 3 4 4 5 5 5 5 5 5 5 5 5 
+                G   1 2 3 4 4 5 6 6 6 6 6 6 6 6 
+                H   1 2 3 4 4 5 6 6 6 6 6 6 6 6 
+                J   1 2 3 4 4 5 6 6 7 7 7 7 7 7 
+                Q   1 2 3 4 4 5 6 6 7 7 7 7 7 7 
+                Z   1 2 3 4 4 5 6 6 7 7 7 7 7 8 
+
+    PATH ARRAY : I = 0 AND J = 0 NOT SHOWN FOR CLARITY
+                    A B C D E F G I J K R X Y Z
+                A   * L L L L L L L L L L L L L 
+                B   U * L L L L L L L L L L L L 
+                C   U U * L L L L L L L L L L L 
+                D   U U U * L L L L L L L L L L 
+                F   U U U U L * L L L L L L L L 
+                G   U U U U L U * L L L L L L L 
+                H   U U U U L U U L L L L L L L 
+                J   U U U U L U U L * L L L L L 
+                Q   U U U U L U U L U L L L L L 
+                Z   U U U U L U U L U L L L L * 
+    
+    
+    DIFF RESULT  : ABCD+EFG+I-HJ+K-Q+R+X+YZ
+    */
     return 0;
 }
