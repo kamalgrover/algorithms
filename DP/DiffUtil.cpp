@@ -25,7 +25,7 @@ void printAA(vector<vector<K>> &a)
         printA(a[i]);
     }
 }
-//only dp is indexed with 1, rest all the arrays are indexed with 0
+
 //we need to define notation in path array.
 // path[i][j = 'L' means coming from left
 // path[i][j = 'U' means coming from left
@@ -36,11 +36,13 @@ int solve(string &x, string &y, vector<vector<int>> &dp, vector<vector<char>> &p
     const int lx = x.size();
     const int ly = y.size();
     //base case dp[i][0] = 0 and dp[0][j] = 0 taken care by way of init
-    for (int i = 1; i <= lx; i++)
+
+    for (int i = 1; i <= lx; i++) // caution : dp and paths is indexed with 1
     {
-        for (int j = 1; j <= ly; j++)
+        for (int j = 1; j <= ly; j++) // caution : dp and paths is indexed with 1
         {
-            if (x[i - 1] == y[j - 1])
+
+            if (x[i - 1] == y[j - 1]) // caution : dp and paths is indexed with 1
             {
                 dp[i][j] = 1 + dp[i - 1][j - 1];
                 path[i][j] = 'D';
