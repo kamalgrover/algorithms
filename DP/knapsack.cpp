@@ -10,7 +10,7 @@ void printA(vector<int>&a){
     cout << "\n";
 }
 int solve(vector<int>& values , vector<int>& weights, int capacity){
-    
+    //TODO
 }
 int main(){
     int N;
