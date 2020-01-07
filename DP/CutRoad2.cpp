@@ -14,7 +14,7 @@ void printVec(vector<int> &a)
 }
 int solve(int C, vector<int> len, vector<int> price, vector<int> dp)
 {
-    cout << "Total lenght  =  " << C << endl;
+    cout << "Total length  =  " << C << endl;
     printVec(len);
     printVec(price);
     
