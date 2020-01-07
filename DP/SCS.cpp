@@ -137,7 +137,7 @@ vector<string> findAllSCS(string &x, string &y, vector<vector<int>> &dp, int m, 
     copy(left.begin(), left.end(), back_inserter(top));
     return top;
 }
-set<string>SCS(string &x, string&y)
+set<string> SCS(string &x, string &y)
 {
     const int lenx = x.length();
     const int leny = y.length();
@@ -156,6 +156,11 @@ int main()
         6
         A B C B D A B
         B D C A B A
+        
+        Solutions:
+        ABCBDCABA
+        ABDCABDAB
+        ABDCBDABA
 
      */
     int lenx, leny;
